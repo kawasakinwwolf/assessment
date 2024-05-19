@@ -19,20 +19,43 @@ assessmentButton.addEventListener(
   // while (resultDivision.firstChild) {
   //   resultDivision.removeChild(resultDivision.firstChild);
   // }
-  const header = document.createElement('h3');
-  header.innerText = '診断結果';
-  resultDivision.appendChild(header);
-  // resultDivision.innerHTML = '<h3>診断結果</h3>';'
 
+  // 診断結果表示エリアの作成
+  // 連続して診断結果が出ないようにする
+  resultDivision.innerText = "";
+
+  // while (resultDivision.firstChild) {
+  //   resultDivision.removeChild(resultDivision.firstChild);
+  // }
+
+  // Bootstrap Card形式に合わせてDOM操作
+  // headerDivision の作成
+  const headerDivision = document.createElement('div');
+  headerDivision.setAttribute('class', 'card-header text-bg-primary');
+  headerDivision.innerText = '診断結果';
+
+  // bodyDivision の作成
+  const bodyDivision = document.createElement('div');
+  bodyDivision.setAttribute('class', 'card-body');
+  
   // 診断結果の文字列
   const paragraph = document.createElement('p');
+  paragraph.setAttribute('class', 'card-text');
   const result = assessment(userName);
   paragraph.innerText = result;
-  resultDivision.appendChild(paragraph);
+  bodyDivision.appendChild(paragraph);
+
+  // resultDivision に Bootstrap のスタイルを適用する
+  resultDivision.setAttribute('class', 'card shadow');
+
+  // resultDivision に headerDivision と bodyDivision を 差し込む
+  resultDivision.appendChild(headerDivision);
+  resultDivision.appendChild(bodyDivision);
 
   
 // ツイートエリアの作成
   tweetDivision.innerHTML = "";
+  tweetDivision.setAttribute('class', 'mt-4');
   const anchor = document.createElement('a');
   const hrefValue =
   'https://twitter.com/intent/tweet?button_hashtag=' +
